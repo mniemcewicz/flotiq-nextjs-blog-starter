@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<a href="https://flotiq.com/">
+    <img src="https://editor.flotiq.com/fonts/fq-logo.svg" alt="Flotiq logo" title="Flotiq" align="right" height="60" />
+</a>
 
-## Getting Started
+Next.js starter for blog with Flotiq source
+===========================
 
-First, run the development server:
+Kick off your project with this blog boilerplate. This starter ships with the main Next.js configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Check our live demo: [there will be link] 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Quick start
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Start the project from template using npx**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    git clone https://github.com/flotiq/flotiq-nextjs-blog-starter flotiq-nextjs-blog-starter
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Import example data from starter to Flotiq**
 
-## Learn More
+    ```bash
+    npm i -g flotiq-cli
+    cd flotiq-nextjs-blog-starter
+    flotiq import .flotiq [flotiqApiKey]
+    ```
+    _Note: You need to put your Read and write API key as the `flotiqApiKey` for import to work, You don't need any content types in your account._
 
-To learn more about Next.js, take a look at the following resources:
+3. **Configure application**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    The next step is to configure our application to know from where it has to fetch the data.
+    
+    Flotiq provides a tool named [flotiq-setup](https://github.com/flotiq/flotiq-setup)
+    for automatically populating`.env` files with your Flotiq API keys.
+    
+    ```bash
+    npx flotiq-setup
+    ```
+    
+    After executing this command, a browser window will open with the Flotiq login screen. Upon successful authentication,
+    the command will automatically generate appropriately filled `.env` files for you.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    _Note: If there are existing .env files in the project, flotiq-setup may overwrite them._
 
-## Deploy on Vercel
+4. **Install dependencies**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Navigate into your new site’s directory and run
+    
+    ```bash
+    yarn install
+    ```
+   
+5. **Flotiq codegen - install SDK**
+    
+    This package simplifies JavaScript Fetch API integration for your Flotiq project, tailored to your Flotiq account
+    data.
+    
+    To install Flotiq SDK you can use flotiq-nextjs-setup CLI, that will not only seamlessly generate SDK for your Next.js project, but will also add content cache revalidation endpoint, handle draft mode for unpublished content on Flotiq and more. To use the flotiq-nextjs-setup CLI simply run the setup:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npx flotiq-nextjs-setup
+    ```
+    If you want to read more about our flotiq-nextjs-setup CLI, refer to our [Flotiq NextJS docs](https://flotiq.com/docs/Universe/nextjs/nextjs-setup/).
+
+    If instead you prefer to install only Flotiq SDK, manually, do the following steps:
+
+    ```bash
+    npx flotiq-codegen-ts generate --compiled-js
+    ```
+    
+    Now, in your project, you can use the `FlotiqApi` class for easy and convenient communication with the Flotiq API.
+    
+    ```javascript
+    import { FlotiqApi } from '../flotiqApi/index';
+    const api = new FlotiqApi(apiKey);
+    
+    const postItem = await flotiq.BlogpostAPI.get({ id: '123' });
+    const title = postItem.title;
+    // ...
+    ```
+
+    Examples of its usage can be found in the `lib/blogpost.js` file of this project or can be explored in the
+    [flotiq-codegen-ts repository](https://github.com/flotiq/flotiq-codegen-ts)
+    
+    _Note: If you make any changes (additions or deletions) to the `content type definitions` in your Flotiq account, you will need to rerun `npx flotiq-codegen-ts generate --compiled-js` command._
+
+6. **Developing**
+    
+    Navigate into your new site’s directory and start it up.
+    
+    ```shell
+    yarn dev
+    ```
+    
+    Your site is now running at `http://localhost:3000`!
+    
+    Open the `flotiq-nextjs-blog-starter` directory in your code editor of choice and edit `src/app/page.tsx`. Save your changes and the browser will update in real time!
+
+7. **Manage your content using Flotiq editor**
+    
+    You can now easily manage your content using [Flotiq editor](https://editor.flotiq.com)
+
+    _Note: If you are using `FlotiqApi` generated from `flotiq-codegen-ts` remember to rerun `npx flotiq-codegen-ts generate --compiled-js`
+    command after changes (additions or edits) to the `content type definitions` in your Flotiq_
+
+## Deploy
+
+Deploy this starter with one click on [Vercel](https://vercel.com/):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fflotiq%2Fflotiq-nextjs-blog-starter)
+
+You can also deploy this project to [Heroku](https://www.heroku.com/) in 3 minutes:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fflotiq%2Fflotiq-nextjs-blog-starter)
+
+Or to [Netlify](https://www.netlify.com/):
+
+[![Deploy](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https%3A%2F%2Fgithub.com%2Fflotiq%2Fflotiq-nextjs-blog-starter)
+
+## Learning Next.js
+
+Looking for more guidance? Full documentation for Next.js lives [on the website](https://nextjs.org/). Here are some places to start:
+
+- **To dive straight into code samples, head [to the Next.js documentation](https://nextjs.org/docs/getting-started).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+
+## Collaborating
+
+If you wish to talk with us about this project, feel free to hop on our [![Discord Chat](https://img.shields.io/discord/682699728454025410.svg)](https://discord.gg/FwXcHnX).
+
+If you found a bug, please report it in [issues](https://github.com/flotiq/flotiq-nextjs-blog-1/issues).
