@@ -2,7 +2,7 @@ import Image from "next/image";
 
 type PageSummaryProps = {
   title: string;
-  description: string;
+  description: React.ReactNode;
   imageUrl?: string;
   imageAlt?: string;
 };
@@ -26,7 +26,7 @@ export default function PageSummary({
       )}
       <div className="my-auto">
         <h1 className="text-center md:text-left">{title}</h1>
-        <p dangerouslySetInnerHTML={{ __html: description }} />
+        <p>{description}</p>
       </div>
     </div>
   );
