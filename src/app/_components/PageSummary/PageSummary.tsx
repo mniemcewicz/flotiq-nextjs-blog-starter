@@ -14,10 +14,10 @@ export default function PageSummary({
   imageAlt,
 }: PageSummaryProps) {
   return (
-    <div className="gap-8 max-w-5xl mx-auto flex items-start">
+    <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start gap-4 md:gap-8 ">
       {imageUrl && (
         <Image
-          className="rounded-full h-auto"
+          className="rounded-full h-auto w-40 lg:w-52 2xl:w-fit m-auto"
           alt={imageAlt || ""}
           src={imageUrl}
           width={200}
@@ -25,7 +25,7 @@ export default function PageSummary({
         />
       )}
       <div className="my-auto">
-        <h1>{title}</h1>
+        <h1 className="text-center md:text-left">{title}</h1>
         <p dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>
