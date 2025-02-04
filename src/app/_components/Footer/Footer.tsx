@@ -3,13 +3,16 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between gap-10 py-4 border-t">
-      <Link className="font-bold text-5xl" href="/">
-        Home
+    <footer className="flex items-center gap-10 py-4 border-t">
+      <Link
+        className="font-bold text-3xl no-underline hover:text-black"
+        href="/"
+      >
+        Tech & Threads
       </Link>
 
       <Link
-        className="font-bold"
+        className="font-bold ml-auto no-underline"
         href="https://flotiq.com/?utm_source=poweredByFlotiq&utm_medium=poweredBy"
         target="_blank"
         rel="noreferrer"

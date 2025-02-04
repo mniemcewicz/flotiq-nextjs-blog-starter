@@ -13,10 +13,12 @@ export default function BlogPostCard({
   internal,
 }: BlogpostHydrated) {
   return (
-    <Link
-      className="flex gap-4 bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
-      href={`blogpost/${slug}`}
-    >
+    <div className="relative flex gap-4 bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+      <Link
+        className="absolute inset-0"
+        href={`blogpost/${slug}`}
+        aria-label={title}
+      />
       {headerImage?.length && (
         <Image
           alt={headerImage[0].alt || ""}
@@ -32,6 +34,6 @@ export default function BlogPostCard({
           {moment(internal.createdAt).format("Do MMMM yyyy")}
         </span>
       </div>
-    </Link>
+    </div>
   );
 }
