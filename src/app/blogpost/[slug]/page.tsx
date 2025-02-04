@@ -1,7 +1,8 @@
-import PageSummary from "@/app/_components/PageSummary/PageSummary";
-import { flotiqApiClient } from "@/flotiq-api-client";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+
+import { flotiqApiClient } from "@/flotiq-api-client";
+
+import PageSummary from "@/app/_components/PageSummary/PageSummary";
 
 export default async function PostPage({
   params,

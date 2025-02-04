@@ -1,9 +1,9 @@
-import { flotiqApiClient } from "@/flotiq-api-client";
-import { BlogpostHydrated } from "@flotiq/flotiq-api-sdk";
-
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
+
+import { flotiqApiClient } from "@/flotiq-api-client";
+import { BlogpostHydrated } from "@flotiq/flotiq-api-sdk";
 
 export default function BlogPostCard({
   title,
