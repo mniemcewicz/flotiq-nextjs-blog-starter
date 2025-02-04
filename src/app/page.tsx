@@ -7,6 +7,7 @@ export default async function Home() {
     limit: 10,
     hydrate: 1,
     orderDirection: "desc",
+    orderBy: "internal.createdAt",
   });
 
   return (
