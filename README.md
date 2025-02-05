@@ -9,7 +9,7 @@ Check our live demo: [there will be link]
 
 ## Quick start
 
-1. **Start the project from template using npx**
+1. **Start the project from template using git clone**
 
    ```bash
    git clone https://github.com/flotiq/flotiq-nextjs-blog-starter flotiq-nextjs-blog-starter
@@ -49,40 +49,40 @@ Check our live demo: [there will be link]
    yarn install
    ```
 
-5. **Flotiq codegen - install SDK**
+5. **Flotiq API SDK - types**
 
-   This package simplifies JavaScript Fetch API integration for your Flotiq project, tailored to your Flotiq account
-   data.
+   This starter uses [@flotiq/flotiq-api-sdk](https://www.npmjs.com/package/@flotiq/flotiq-api-sdk) package as an API client. It includes type generation for autocompletion of user data types.
+   
+   With types generated using our typegen command, it enables fast and typesafe development with Flotiq as a data backend.
+   You can still use all the API features without type generation. TypeScript user types can be added or removed at any point in development without code changes required.
 
-   To install Flotiq SDK you can use flotiq-nextjs-setup CLI, that will not only seamlessly generate SDK for your Next.js project, but will also add content cache revalidation endpoint, handle draft mode for unpublished content on Flotiq and more. To use the flotiq-nextjs-setup CLI simply run the setup:
+   Generated `flotiq-api.d.ts` types can be either committed with your code, or .gitignore-d and generated during development and CI/CD.
+   For is of use we already include `flotiq-api.d.ts` file with types containing type definitions for this starter.
 
-   ```bash
-   npx flotiq-nextjs-setup
-   ```
-
-   If you want to read more about our flotiq-nextjs-setup CLI, refer to our [Flotiq NextJS docs](https://flotiq.com/docs/Universe/nextjs/nextjs-setup/).
-
-   If instead you prefer to install only Flotiq SDK, manually, do the following steps:
+   To regenerate Flotiq SDK you can use [flotiq-api-typegen CLI](https://www.npmjs.com/package/@flotiq/flotiq-api-sdk#flotiq-api-typegen), simply run the command:
 
    ```bash
-   npx flotiq-codegen-ts generate --compiled-js
+      npm exec flotiq-api-typegen
    ```
 
-   Now, in your project, you can use the `FlotiqApi` class for easy and convenient communication with the Flotiq API.
+   Usage examples:
 
-   ```javascript
-   import { FlotiqApi } from "../flotiqApi/index";
-   const api = new FlotiqApi(apiKey);
+   ```typescript
+   import { Flotiq } from "@flotiq/flotiq-api-sdk";
 
-   const postItem = await flotiq.BlogpostAPI.get({ id: "123" });
-   const title = postItem.title;
-   // ...
+   const api = new Flotiq({
+     apiKey: "<YOUR API KEY>",
+   });
+
+   await api.content._media.list().then((response) => {
+     console.log("media > list", response);
+   });
    ```
 
-   Examples of its usage can be found in the `lib/blogpost.js` file of this project or can be explored in the
-   [flotiq-codegen-ts repository](https://github.com/flotiq/flotiq-codegen-ts)
+   More examples of its usage can be found in the [@flotiq/flotiq-api-sdk readme](https://www.npmjs.com/package/@flotiq/flotiq-api-sdk#usage-examples)
 
-   _Note: If you make any changes (additions or deletions) to the `content type definitions` in your Flotiq account, you will need to rerun `npx flotiq-codegen-ts generate --compiled-js` command._
+   _Note: If you make any changes (additions or deletions) to the `content type definitions` in your Flotiq account, you will need to rerun the `flotiq-api-typegen` command. 
+   If you are making changes during development, you can use `--watch` option, which will regenerate types for you, every time you change content type definition._
 
 6. **Developing**
 
@@ -124,7 +124,7 @@ Project requires the following variables to start:
 | Name                     | Description                                            |
 | ------------------------ | ------------------------------------------------------ |
 | `FLOTIQ_CLIENT_AUTH_KEY` | The key used to [revalidate cache](#nextjs-data-cache) |
-| `FLOTIQ_API_KEY`         | Flotiq Read API key for blogpost content objects |
+| `FLOTIQ_API_KEY`         | Flotiq Read API key for blogpost content objects       |
 
 ### Next.js Data Cache
 
@@ -146,16 +146,16 @@ Replace `https://your-domain.com` with your actual `URL` and `FLOTIQ_CLIENT_AUTH
 To add a webhook that automatically clears the cache after saving a blog post, follow these instructions:
 
 1. Go to [Flotiq dashboard](https://editor.flotiq.com/login)
-2. Go to the *Webhooks* page and click *Add new webhook*
+2. Go to the _Webhooks_ page and click _Add new webhook_
 3. Name the webhook (e.g. Clear Blog Post cache)
 4. Paste URL to your revalidate enpoint, eg. `https://your-domain.com/api/flotiq/revalidate`
 5. As a webhook type choose **Content Object Changes Asynchronous (non-blocking)**
-4. Enable the webhook
-5. As a trigger, choose **Create**, **Update** and **Delete** actions on the **Blog Post** Content Type
-6. Add new header with following fields:
-    * **Header Name** - `x-editor-key`
-    * **Header Value** - value for `FLOTIQ_CLIENT_AUTH_KEY` env variable in your deployment
-7. Save the webhook
+6. Enable the webhook
+7. As a trigger, choose **Create**, **Update** and **Delete** actions on the **Blog Post** Content Type
+8. Add new header with following fields:
+   - **Header Name** - `x-editor-key`
+   - **Header Value** - value for `FLOTIQ_CLIENT_AUTH_KEY` env variable in your deployment
+9. Save the webhook
 
 Example webhook configuration:
 
