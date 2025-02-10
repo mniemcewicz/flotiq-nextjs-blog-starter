@@ -81,7 +81,7 @@ Check our live demo: [there will be link]
 
    More examples of its usage can be found in the [@flotiq/flotiq-api-sdk readme](https://www.npmjs.com/package/@flotiq/flotiq-api-sdk#usage-examples)
 
-   _Note: If you make any changes (additions or deletions) to the `content type definitions` in your Flotiq account, you will need to rerun the `flotiq-api-typegen` command. 
+   _Note: If you make any changes (additions or deletions) to the content type definitions in your Flotiq account, you will need to rerun the `flotiq-api-typegen` command. 
    If you are making changes during development, you can use `--watch` option, which will regenerate types for you, every time you change content type definition._
 
 6. **Developing**
@@ -100,8 +100,8 @@ Check our live demo: [there will be link]
 
    You can now easily manage your content using [Flotiq editor](https://editor.flotiq.com)
 
-   _Note: If you are using `FlotiqApi` generated from `flotiq-codegen-ts` remember to rerun `npx flotiq-codegen-ts generate --compiled-js`
-   command after changes (additions or edits) to the `content type definitions` in your Flotiq_
+   _Note: If you make any changes (additions or deletions) to the content type definitions in your Flotiq account, you will need to rerun the `flotiq-api-typegen` command. 
+   If you are making changes during development, you can use `--watch` option, which will regenerate types for you, every time you change content type definition._
 
 ## Deploy
 
@@ -173,4 +173,4 @@ Looking for more guidance? Full documentation for Next.js lives [on the website]
 
 If you wish to talk with us about this project, feel free to hop on our [![Discord Chat](https://img.shields.io/discord/682699728454025410.svg)](https://discord.gg/FwXcHnX).
 
-If you found a bug, please report it in [issues](https://github.com/flotiq/flotiq-nextjs-blog-1/issues).
+If you found a bug, please report it in [issues](https://github.com/flotiq/flotiq-nextjs-blog-starter/issues).
