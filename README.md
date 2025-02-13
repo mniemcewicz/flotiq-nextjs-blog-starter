@@ -33,7 +33,7 @@ Check our live demo: [there will be link]
    for automatically populating`.env` files with your Flotiq API keys.
 
    ```bash
-   npx flotiq-setup
+   npx flotiq-setup --nextjs
    ```
 
    After executing this command, a browser window will open with the Flotiq login screen. Upon successful authentication,
