@@ -18,9 +18,8 @@ Check our live demo: [there will be link]
 2. **Import example data from starter to Flotiq**
 
    ```bash
-   npm i -g flotiq-cli
    cd flotiq-nextjs-blog-starter
-   flotiq import .flotiq [flotiqApiKey]
+   npx flotiq-cli import .flotiq [flotiqApiKey]
    ```
 
    _Note: You need to put your Read and write API key as the `flotiqApiKey` for import to work. You don't need any content types in your account._
