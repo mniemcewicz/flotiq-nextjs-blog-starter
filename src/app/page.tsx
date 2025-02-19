@@ -27,8 +27,8 @@ export default async function Home() {
             height={160}
           />
         </div>
-        <div className="my-auto px-5 md:px-8">
-          <h1>Hi, I&apos;m Jane Doe!</h1>
+        <div className="my-auto md:px-8">
+          <h1 className="text-center md:text-left">Hi, I&apos;m Jane Doe!</h1>
           <p>
             I&apos;m a passionate blogger who loves sharing my journey and
             insights with the world. I have a keen interest in web development
