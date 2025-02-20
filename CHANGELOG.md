@@ -11,5 +11,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Releasing version 1.0.0
 * Initializing changelog
 
-### Chnaged
+### Changed
 * minor UI changes compared to pre-release
