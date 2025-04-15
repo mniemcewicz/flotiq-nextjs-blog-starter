@@ -106,7 +106,7 @@ Check our live demo: https://flotiq-nextjs-blog-starter.vercel.app.
 
 Deploy this starter with one click on [Vercel](https://vercel.com/):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fflotiq%2Fflotiq-nextjs-blog-starter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmniemcewicz%2Fflotiq-nextjs-blog-starter&env=FLOTIQ_API_KEY,FLOTIQ_CLIENT_AUTH_KEY&envDescription=API%20Keys%20needed%20for%20application.&envLink=https%3A%2F%2Fflotiq.com%2Fdocs%2FAPI%2F&project-name=flotiq-nextjs-blog-starter&repository-name=flotiq-nextjs-blog-starter)
 
 You can also deploy this project to [Heroku](https://www.heroku.com/) in 3 minutes:
 
